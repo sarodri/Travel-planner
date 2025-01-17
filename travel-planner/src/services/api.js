@@ -11,3 +11,13 @@ export const getAllCountries = async () => {
     throw error;
   }
 };
+
+export const getCountriesByRegion = async (region) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/region/${region}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching countries by region:', error);
+      throw error;
+    }
+  };
