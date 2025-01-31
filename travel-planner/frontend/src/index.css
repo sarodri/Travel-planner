@@ -543,7 +543,7 @@ object {
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
 
-img,
+img:not(.flag),
 video {
   max-width: 100%;
   height: auto;
@@ -766,28 +766,62 @@ p {
 }
 .my-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem; /* equivalente a gap-6 */
-  padding-left: 1rem; /* equivalente a px-4 */
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 1.5rem;
+  justify-content: start;
+  padding-left: 1rem;
   padding-right: 1rem;
   width: 100%;
-}
+  max-width: 1200px;
+  margin: 0 0 3rem 0;
 
-/* Responsivo */
-@media (min-width: 640px) { /* sm */
-  .my-grid {
-    grid-template-columns: repeat(3, 1fr);
+  & div {
+    display: flex !important;
+    flex-direction: column;
+    max-width: 20vw;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & p {
+    margin-bottom: 0 !important;
   }
 }
 
-@media (min-width: 768px) { /* md */
+/* Responsivo */
+/* @media (min-width: 640px) { 
+  .my-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+@media (min-width: 640px) {
+  .my-grid{
+     grid-template-columns: repeat(2, minmax(300px, 1fr)); /* 2 columnas en pantallas medianas */
+  }
+}
+
+@media (min-width: 1024px) {
+  .my-grid{
+     grid-template-columns: repeat(3, minmax(300px, 1fr)); /* 3 columnas en pantallas grandes */
+  }
+}
+
+
+/* @media (min-width: 768px) { 
   .my-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (min-width: 1024px) { /* lg */
+@media (min-width: 1024px) { 
   .my-grid {
     grid-template-columns: repeat(5, 1fr);
   }
+} */
+
+.flag {
+  width: 15vw;
+  height: 10vh;
+  object-fit: cover;
 }
