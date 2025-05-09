@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import useToggleMenu from "../hooks/useToggleMenu";
+import { NavLink } from "react-router-dom";
 
 const Itinerary = () => {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {isOpen, toggleMenu} = useToggleMenu();
 
   useEffect(() => {
     // Función para obtener los planes desde el backend
@@ -34,7 +37,9 @@ const Itinerary = () => {
   }
 
   return (
-    <div className="p-8 space-y-8">
+    <>
+      <span><NavLink to="/" onClick={toggleMenu}>Inicio</NavLink></span>
+      <div className="p-8 space-y-8">
       <h1 className="text-2xl font-bold text-gray-800">Mis Planes</h1>
 
       {plans.length === 0 ? (
@@ -58,7 +63,7 @@ const Itinerary = () => {
         </ul>
       )}
     </div>
-  );
+   </>);
 };
 
 export default Itinerary;

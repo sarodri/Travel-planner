@@ -12,10 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Conexión a MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Conexión a MongoDB exitosa'))
   .catch((error) => console.error('Error conectando a MongoDB:', error));
 

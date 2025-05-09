@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import {NavLink} from "react-router-dom";
 import { getCountriesByRegion } from "../services/api"; 
 import CreatePlan from "../utils/CreatePlan";
+import useToggleMenu from "../hooks/useToggleMenu"
+import WorldMap from "../utils/WorldMap";
 
 const Destinations = () => {
   const [countries, setCountries] = useState([]);
@@ -9,6 +12,7 @@ const Destinations = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [showCountries, setShowCountries] = useState(true);
   const [plans, setPlans] = useState([]);
+  const { isOpen, toggleMenu } = useToggleMenu();
 
    // Obtenemos todos los países por región
    useEffect(() => {
@@ -37,76 +41,80 @@ const Destinations = () => {
     setSelectedCity(country.name.common);
     setShowCountries(false);
   };
+
+  const  handleSelectRegion = (region) => {
+    setSelectedRegion (region)
+  };
+
   const handlePlanCreated = (newPlan) => {
     setPlans([...plans, newPlan]); // Agrega el nuevo plan a la lista
   };
 
   
   return (
-    <div className="w-full max-w-7xl mx-auto mb-4 p-8 space-y-8 flex flex-col items-center">
-      {/* Título centrado */}
-  <h1 className="text-2xl font-bold text-gray-800 text-center">Explora Destinos</h1>
+    <>
+      <span><NavLink to="/" onClick={toggleMenu}>Inicio</NavLink></span>
+      <div className="w-full max-w-7xl mx-auto mb-4 p-8 space-y-8 flex flex-col items-center">
+        {/* Título centrado */}
+        <h1 className="text-2xl font-bold text-gray-800 text-center">Explora Destinos</h1>
 
-{/* Contenedor de select y formulario alineados al inicio */}
-<div className="w-full flex flex-col items-start gap-4">
-  {/* Selección por región */}
-  <div className="w-full flex justify-start p-4">
-    <select
-      className="border p-2 rounded w-1/2 text-center text-gray-700 bg-white shadow-sm"
-      value={selectedRegion}
-      onChange={(e) => setSelectedRegion(e.target.value)}
-    >
-      <option value="">Selecciona un continente</option>
-      <option value="africa">África</option>
-      <option value="americas">América</option>
-      <option value="asia">Asia</option>
-      <option value="europe">Europa</option>
-      <option value="oceania">Oceanía</option>
-    </select>
+        {/* Contenedor de select y formulario alineados al inicio */}
+          <div className="w-full flex flex-col items-start gap-4">
+        {/* Selección por región */}
+            {/* Mapa interactivo de continentes */}
+            <WorldMap onSelectRegion={handleSelectRegion} />
+
+{selectedRegion && (
+  <div>
+    <h2 className="text-xl font-semibold mt-4">Países en {selectedRegion}</h2>
+    {/* Aquí carga tus países con getCountriesByRegion(selectedRegion) */}
   </div>
+)}
 
-  {/* Mostrar formulario cuando CreatePlan está abierto */}
-  {selectedCity && (
-    <div className="w-full flex justify-start">
-      <CreatePlan selectedCity={selectedCity} onPlanCreated={handlePlanCreated} />
-    </div>
-  )}
-</div>
-
-      {/* Mostrar países como tarjetas */}
-      {showCountries && countries.length > 0 && (
-        <div className="my-grid">
-          {countries.map((country) => (
-            <div
-              key={country.cca3}
-              className="border p-4 rounded-lg shadow-lg bg-white cursor-pointer hover:scale-105 transform transition duration-300 w-full h-full min-h-[25vh] gap-4"
-              onClick={() => handleSelectCountry(country)}
-            >
-              <img
-                src={country.flags.svg}
-                alt={country.name.common}
-                className="flag"
-              />
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg font-semibold text-blue-600">{country.name.common}</h3>
-                <p className="text-sm text-gray-600">{country.capital ? country.capital[0] : "No disponible"}</p>
-              </div>
+        {/* Mostrar formulario cuando CreatePlan está abierto */}
+          {selectedCity && (
+            <div className="w-full flex justify-start">
+              <CreatePlan selectedCity={selectedCity} onPlanCreated={handlePlanCreated} />
             </div>
-          ))}
-        </div>
-      )}
+          )}
+          </div>
 
-      {/* Mostrar lugares turísticos (futura implementación) */}
-      {selectedCountry && (
-        <div className="mt-6 p-4 border rounded">
-          <h2 className="text-xl font-bold">Lugares Turísticos en {selectedCountry.name.common}</h2>
-          <p className="text-gray-500">(Próximamente)</p>
-        </div>
-      )}
+        {/* Mostrar países como tarjetas */}
+        {showCountries && countries.length > 0 && (
+          <div className="my-grid">
+            {countries.map((country) => (
+              <div
+                key={country.cca3}
+                className="border p-4 rounded-lg shadow-lg bg-white cursor-pointer hover:scale-105 transform transition duration-300 w-full h-full min-h-[25vh] gap-4"
+                onClick={() => handleSelectCountry(country)}
+              >
+                <img
+                  src={country.flags.svg}
+                  alt={country.name.common}
+                  className="flag"
+                />
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-lg font-semibold text-blue-600">{country.name.common}</h3>
+                  <p className="text-sm text-gray-600">{country.capital ? country.capital[0] : "No disponible"}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
-    </div>
+        {/* Mostrar lugares turísticos (futura implementación) */}
+        {selectedCountry && (
+          <div className="mt-6 p-4 border rounded">
+            <h2 className="text-xl font-bold">Lugares Turísticos en {selectedCountry.name.common}</h2>
+            <p className="text-gray-500">(Próximamente)</p>
+          </div>
+        )}
+
+      </div>
+    </>
   );
 };
 
 export default Destinations;
+
 
