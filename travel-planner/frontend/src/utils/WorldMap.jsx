@@ -3,49 +3,49 @@ import React from 'react';
 const WorldMap = ({ onSelectRegion }) => {
   return (
     <svg
-      viewBox="0 0 800 400"
-      className="w-full h-auto max-w-4xl mx-auto"
+      viewBox="0 0 2000 1001"
+      className="w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* África */}
-      <rect
-        x="300" y="200" width="80" height="60"
-        className="fill-yellow-400 cursor-pointer hover:fill-yellow-500 transition"
+      <path
+        d="M960 480 L980 520 L970 580 L940 580 L930 520 Z"
+        className="fill-yellow-500 cursor-pointer hover:opacity-80 transition"
         onClick={() => onSelectRegion('africa')}
       />
-      <text x="310" y="240" className="text-black text-sm">África</text>
+      <text x="940" y="600" className="fill-black text-sm">África</text>
 
       {/* América */}
-      <rect
-        x="100" y="150" width="80" height="100"
-        className="fill-green-400 cursor-pointer hover:fill-green-500 transition"
+      <path
+        d="M400 300 L420 400 L410 500 L380 500 L370 400 Z"
+        className="fill-green-500 cursor-pointer hover:opacity-80 transition"
         onClick={() => onSelectRegion('americas')}
       />
-      <text x="110" y="200" className="text-black text-sm">América</text>
+      <text x="380" y="520" className="fill-black text-sm">América</text>
 
       {/* Asia */}
-      <rect
-        x="500" y="150" width="100" height="80"
-        className="fill-red-400 cursor-pointer hover:fill-red-500 transition"
+      <path
+        d="M1300 300 L1320 400 L1310 500 L1280 500 L1270 400 Z"
+        className="fill-red-500 cursor-pointer hover:opacity-80 transition"
         onClick={() => onSelectRegion('asia')}
       />
-      <text x="520" y="190" className="text-black text-sm">Asia</text>
+      <text x="1280" y="520" className="fill-black text-sm">Asia</text>
 
       {/* Europa */}
-      <rect
-        x="450" y="100" width="50" height="50"
-        className="fill-blue-400 cursor-pointer hover:fill-blue-500 transition"
+      <path
+        d="M1100 200 L1120 240 L1110 280 L1080 280 L1070 240 Z"
+        className="fill-blue-500 cursor-pointer hover:opacity-80 transition"
         onClick={() => onSelectRegion('europe')}
       />
-      <text x="455" y="130" className="text-black text-sm">Europa</text>
+      <text x="1080" y="300" className="fill-black text-sm">Europa</text>
 
       {/* Oceanía */}
-      <rect
-        x="650" y="250" width="60" height="40"
-        className="fill-purple-400 cursor-pointer hover:fill-purple-500 transition"
+      <path
+        d="M1600 700 L1620 740 L1610 780 L1580 780 L1570 740 Z"
+        className="fill-purple-500 cursor-pointer hover:opacity-80 transition"
         onClick={() => onSelectRegion('oceania')}
       />
-      <text x="655" y="275" className="text-black text-sm">Oceanía</text>
+      <text x="1580" y="800" className="fill-black text-sm">Oceanía</text>
     </svg>
   );
 };
