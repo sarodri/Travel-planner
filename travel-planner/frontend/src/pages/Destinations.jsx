@@ -43,6 +43,7 @@ const Destinations = () => {
   };
 
   const  handleSelectRegion = (region) => {
+    console.log("Región seleccionada:", region);
     setSelectedRegion (region)
   };
 
@@ -64,12 +65,7 @@ const Destinations = () => {
             {/* Mapa interactivo de continentes */}
             <WorldMap onSelectRegion={handleSelectRegion} />
 
-{selectedRegion && (
-  <div>
-    <h2 className="text-xl font-semibold mt-4">Países en {selectedRegion}</h2>
-    {/* Aquí carga tus países con getCountriesByRegion(selectedRegion) */}
-  </div>
-)}
+
 
         {/* Mostrar formulario cuando CreatePlan está abierto */}
           {selectedCity && (

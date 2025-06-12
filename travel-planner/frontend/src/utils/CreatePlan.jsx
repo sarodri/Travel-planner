@@ -32,7 +32,7 @@ const CreatePlan = ({ onPlanCreated, selectedCity }) => {
       // Redirigir al inicio tras 2 segundos
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1000);
     } catch (error) {
       setError(error.message);
     }

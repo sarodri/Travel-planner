@@ -1,0 +1,135 @@
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+  
+  /* Título principal */
+  .container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+  
+  /* Párrafo descriptivo */
+  .container p {
+    font-size: 1.125rem;
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+  
+  /* Grid de tarjetas */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  /* Tarjetas individuales */
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Título de las tarjetas */
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+  
+  /* Descripción de las tarjetas */
+  .card-description {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+  
+  /* Botones de las tarjetas */
+  .card-button {
+    background: linear-gradient(135deg, #91afdf 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: none;
+    outline: none;
+  }
+  
+  .card-button:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+  
+  .card-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.4);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    .container h1 {
+      font-size: 2rem;
+    }
+    
+    .container p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .card-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .card {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container h1 {
+      font-size: 1.75rem;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+    }
+    
+    .card-button {
+      padding: 0.625rem 1.25rem;
+      font-size: 0.875rem;
+    }
+  }
